@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/style.css"> 
+</head>
+
+<h1 align="center">Customer Feedback Classifier</h1>
+
+
+<style>
+  body {
+    background-image: url(../static/clean-mirror.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+  }
+  </style>
+
+
+
+<body>
+  <h1 align="center"></h1>
+  <p align="center">Please choose a csv file and enter the column name of the feedback comments: </p>
+  <form method="POST" action="" enctype="multipart/form-data">
+    <p align="center"><label for ="column">CSV File:</label> <input type="file" id="file" name="file"><label for ="column">
+	Column Name:</label> <input type="text" id="column" name="column"></p>
+	
+    <p align="center"><input type="submit" name="submit_button" value="Submit File"></p>
+  </form>
+  
+  <form method="POST" >
+  <p align="center">Or, enter your comment here: </p>
+  <p align="center">  <textarea id="comment_id" name="comment_name" rows="4" cols="50"> </textarea> </p>
+  <p align="center"><input type="submit" name="submit_button" value="Submit Comment"></p>
+  </form>
+
+
+
+
+
+<div align="center" class=page >
+  {% for table in tables %}
+    <h2>{{titles[loop.index]}}</h2>
+    {{ table|safe }}
+  {% endfor %}
+</div> 
+
+
+<div align="center" class=page >
+  {{no_file_err}}
+</div> 
+
+<div align="center" class=page >
+  {{no_column_err}}
+</div> 
+
+<div align="center" class=page >
+  {{column_not_exists}}
+</div> 
+
+  
+<!-- <div>
+  {{ resources }}
+</div> -->
+
+
+
+
+</body>
+</html>

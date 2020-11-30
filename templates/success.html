@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta namherokue="viewport" content="width=device-width, initial-scale=1">
+<style>
+ol {
+    text-align: left;
+    list-style-position: inside;
+    }
+ 
+    .collapsible {
+  background-color: rgb(182, 195, 252);
+  color: black;
+  cursor: pointer;
+  padding: auto;
+  width: auto;
+  border: 1.5px ridge;
+  text-align: left;
+  outline: none;
+  font-size: auto;
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(178, 203, 248);
+}
+
+.content {
+  padding: 0 10px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+</style>
+
+<link type="text/css" rel="stylesheet" href="../static/style.css">
+</head>
+
+<body style="background: url(../static/background_img.jpg);">
+
+<h1 style="text-align:center">Book Lovers</h1> 
+
+
+ <!-- <div class="container" style="text-align: center;">   -->
+    <!--<img src="..\static\bookstore_img.jpg"  width="500" height="500"> -->
+ <!--   <h3>You enjoyed "{{book_name}}", you might also like:</h3>
+    <ol style="text-align: center;"> 
+    {% for book in recommended_books %}
+        <li > {{ book }} </li>
+    {% endfor %}
+    </ol>
+</div>     -->
+
+
+ <h3>You enjoyed "{{book_name}}", you might also like:</h3>
+<div id="demo" class="container" style="text-align: left;"></div>
+
+<script>
+var recom_books =  {{ recommended_books | tojson }};
+var auth = {{recommended_books_auth|tojson}};
+var summ = {{recommended_books_summ|tojson}};
+
+var text= "<ol style=\"text-align: left;\">";
+var i;
+for (i=0; i < 10; i++) {
+text += "<li style=\"padding-bottom: 3mm;\">" + "\"" + recom_books[i] + "\"" + " by: " + auth[i] + 
+"    <button style=\"float: auto;\" type=\"button\" class=\"collapsible\">Book summary</button>" +
+"<div class=\"content\"><p>" + summ[i] + "</p></div>"
+ "</li><p> </p>";
+}
+text += "</ol>";
+
+document.getElementById("demo").innerHTML = text;
+
+</script>    
+
+<img src='data:image/png;base64,{{encoded}}' , style="height:400; width:800 ;" >
+<!-- <img src='data:image/png;base64,{{encoded2}}', style="width:30%"> -->
+<!-- <img src="static/num_of_ratings.png"   width="390" height="344"> -->
+
+<!-- <h3>You enjoyed "{{book_name}}", you might also like:</h3>
+<div id="demo" class="container" style="text-align: center;"></div>
+<ol style="text-align: left;"> 
+    <li > "{{ recommended_books[0] }}" by  {{recommended_books_auth[0]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[0]}}    </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[1] }}" by  {{recommended_books_auth[1]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[1]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[2] }}" by  {{recommended_books_auth[2]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[2]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[3] }}" by  {{recommended_books_auth[3]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[3]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[4] }}" by  {{recommended_books_auth[4]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[4]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[5] }}" by  {{recommended_books_auth[5]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[5]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[6] }}" by  {{recommended_books_auth[6]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[6]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[7] }}" by  {{recommended_books_auth[7]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[7]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[8] }}" by  {{recommended_books_auth[8]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[8]}} </p>
+        </div>
+    </li>
+
+    <li > "{{ recommended_books[9] }}" by  {{recommended_books_auth[9]}} <button style="float: right;" type="button" class="collapsible">click for summary</button>
+        <div class="content">
+        <p> {{recommended_books_summ[9]}} </p>
+        </div>
+    </li>
+
+
+</ol>  -->
+
+<!--<button type="button" class="collapsible">Open Collapsible</button>
+<div class="content">
+  <p>Lorem ipsum...</p>
+</div>
+-->
+
+<!--<div class="container" style="text-align: center;">
+{% if message %}
+<p class="message">{{ message | safe}}</p>
+{% endif %}
+<form action="/submit" method="POST">
+<div class="form-group">
+<h3><center>Please enter a book you enjoyed:</center></h3>
+<input type="text" name="book_name">    
+</div>
+<input type="submit" value="Enter" class="btn">
+</form>
+</div>
+-->
+
+<div class="container" style="text-align: center;">
+  {% if message %}
+  <p class="message">{{ message | safe}}</p>
+  {% endif %}
+  <form action="/submit" method="POST">
+  <div class="form-group">
+  <h3> Please enter a book you enjoyed:</h3>
+  <input list="books_list" name="book_name" id="book_list">
+  </div>
+  <datalist id="books_list">
+  {% for title in books_titles %}
+  <option value= "{{title}}" >
+  {% endfor %}
+  </datalist>
+  <input type="submit" value="Enter" class="btn">
+  </form>
+  </div>
+
+
+
+
+
+
+<section id="popular books" style="overflow: hidden; height: 200px; text-align: left;">
+    <h3>Most popular books:</h3>
+ 
+    <marquee behavior="scroll"  direction="up" scrollamount="3">
+      <ol>
+      {% for book in most_rated_books %}
+      <li style="padding-bottom: 5mm; font-weight: bold; text-align: left;" >
+           {{ book }} </li>
+      {% endfor %}
+      </ol>
+     </marquee>
+ 
+ </section>
+
+
+
+
+ <script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
+
+
+
+</body>
+</html>
