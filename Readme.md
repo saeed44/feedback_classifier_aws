@@ -2,4 +2,4 @@
 
 This is a containerized webapp (using Docker). 
 
-To run the application locally, use docker `build` and `run`. 
+To run the application locally, use docker `build` and `run` commands. 
